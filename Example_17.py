@@ -19,6 +19,7 @@ class PersonAlreadyHasAddress(AddressException):
     pass
 
 
+# Описание структуры базового класса Person и его функций (checkin - вселение для Мужчин и Женщин, а также с проверкой, что могут жить вместе)
 class Person:
     def checkin(self, address):
         if not self._has_address:
@@ -36,6 +37,7 @@ class Person:
             raise TooManyPeopleException()
 
 
+# Описание структуры класса-потомка Мужчин и его функций
 class Male(Person):
     def __repr__(self):
         return "\u2642(%s)" % self._name
@@ -49,6 +51,7 @@ class Male(Person):
             pass
 
 
+# Описание структуры класса-потомка Женщин и его функций
 class Female(Person):
     def __repr__(self):
         return "\u2640(%s)" % self._name
@@ -58,7 +61,7 @@ class Female(Person):
         if other and other[0] == Female:
             raise FemaleFemaleException()
 
-
+# Описание структуры класса Адреса и его функций (movi_in - заселение; is_occupied - уже живут по этому адресу)
 class Address:
     def __init__(self, label):
         self.__label = label
@@ -87,7 +90,7 @@ from sys import stderr
 if __name__ == '__main__':
     for address, person in product((Address('A'),
                                     Address('B')),
-                                   (Male("Вася"),
+                                   (Male("Вася"), # Создаем 4-х людей (2 мужчины и 2 женщины)
                                     Male("Паша"),
                                     Female("Лена"),
                                     Female("Катя"))):
